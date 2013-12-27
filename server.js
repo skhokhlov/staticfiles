@@ -5,7 +5,7 @@ var express = require('express'),
 app.set('port', process.env.PORT || 8000);
 
 app.get('/:name/:version/:type/:file', function (req, res) {
-    var address = {
+    var adress = {
         name: req.params.name,
         version: req.params.version,
         type: req.params.type,
