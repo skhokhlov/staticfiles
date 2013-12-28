@@ -87,7 +87,7 @@ function log(ip, useragent, text, protocol,  code) {
         dt = date.getMonth() + ' ' + date.getDate() + ' ' + date.getFullYear() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds(),
         nd = new Date(dt);
 
-    require('fs').appendFile('server.log', ip + ' ' + useragent + ' [' + nd.toUTCString() + '] "' + text + ' ' + protocol + '" ' + code + ' \n', function (err) {
+    require('fs').appendFile('server.log', useragent + ' [' + nd.toUTCString() + '] "' + text + ' ' + protocol + '" ' + code + ' \n', function (err) {
         if (err) throw err;
     });
 }
