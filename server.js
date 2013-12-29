@@ -12,7 +12,7 @@ app.get('/:name/:version/:type/:file', function (req, res) {
         file: req.params.file
     };
     if (req.originalUrl.length <= 50) {
-        res.sendfile(__dirname + '/static/' + adress.name + '/' + adress.type + '/' + adress.file);
+        res.sendfile(__dirname + '/archive/' + adress.name + '/' + adress.type + '/' + adress.file);
         console.log(req.method.cyan + ' ' + req.path + ' 200'.green);
         log(req.ip, req.headers['user-agent'], req.method + ' ' + req.path, req.protocol, 200);
     } else {
@@ -44,7 +44,7 @@ app.get('/robots.txt', function (req, res) {
 
 app.get('/logger', function (req, res) {
     res.set('Content-Type', 'text/plain')
-        .sendfile(__dirname + '/server.log');
+        .sendfile(__dirname + '/serverlog.txt');
 });
 
 app.use(function (req, res) {
@@ -86,7 +86,7 @@ function log(ip, useragent, text, protocol,  code) {
         dt = date.getMonth() + ' ' + date.getDate() + ' ' + date.getFullYear() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds(),
         nd = new Date(dt);
 
-    require('fs').appendFile('server.log', useragent + ' [' + nd.toUTCString() + '] "' + text + ' ' + protocol + '" ' + code + ' \n', function (err) {
+    require('fs').appendFile('serverlog.txt', useragent + ' [' + nd.toUTCString() + '] "' + text + ' ' + protocol + '" ' + code + ' \n', function (err) {
         if (err) throw err;
     });
 }
