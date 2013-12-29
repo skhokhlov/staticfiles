@@ -1,5 +1,4 @@
 var express = require('express'),
-    http = require('http'),
     app = express(),
     colors = require('colors');
 
@@ -60,7 +59,7 @@ app.use(function (req, res) {
     }
 });
 
-http.createServer(app).listen(app.get('port'), function () {
+require('http').createServer(app).listen(app.get('port'), function () {
     console.log('Server listen on port ' + app.get('port'));
 });
 
